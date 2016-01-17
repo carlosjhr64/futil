@@ -9,7 +9,7 @@ func TestUtil(test *testing.T){
   // Obviously, this file exist, is regular, and is readable!
   if !FileOK(fn) { bad("OK") }
 
-  // This file as 18 lines.
+  // This file has 18 lines.
   lines := Wcl(fn)
   if lines != 18 { bad("Wcl") }
 
