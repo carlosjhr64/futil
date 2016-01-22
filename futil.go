@@ -8,9 +8,7 @@ import (
   "io/ioutil"
 )
 
-const VERSION string = "0.0.0"
-
-var fields = strings.Fields
+const VERSION string = "0.1.0"
 
 // http://stackoverflow.com/questions/24562942/golang-how-do-i-determine-the-number-of-lines-in-a-file-efficiently
 func Wcl(fn string) int {
@@ -45,4 +43,18 @@ func FileOK(fn string) bool {
   if !m.IsRegular() { return false }
   p := m.Perm()
   return (p &^ 0377) == 0400
+}
+
+func ReadTable(fn string, cols int) [][]string {
+  lines := strings.Split(Read(fn), "\n")
+  table := make([][]string, len(lines))
+  i := 0
+  for _, line := range(lines) {
+    if line == "" { continue }
+    fields := strings.Fields(line)
+    if len(fields) != cols { panic("Unexpected fields length.") }
+    table[i] = fields
+    i++
+  }
+  return table[:i]
 }

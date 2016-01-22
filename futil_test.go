@@ -11,8 +11,10 @@ func TestUtil(test *testing.T){
 
   // This file has 18 lines.
   lines := Wcl(fn)
-  if lines != 18 { bad("Wcl") }
+  if lines != 20 { bad("Wcl") }
 
   s := Read(fn)
   if s[:13] != "package futil" { bad("Read") }
+
+  // TODO: ReadTable
 }
